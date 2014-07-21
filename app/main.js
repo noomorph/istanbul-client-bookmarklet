@@ -17,8 +17,9 @@
         $.ajax({
             type: 'POST',
             url: '/coverage/client',
-            data: coverage,
-            dataType: 'application/json',
+            data: JSON.stringify(coverage),
+            processData: false,
+            contentType: 'application/json; charset=UTF-8',
             success: callback
         });
     }
