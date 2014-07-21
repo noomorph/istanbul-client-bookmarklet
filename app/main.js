@@ -1,11 +1,15 @@
 /*jshint strict:false, browser:true */
 /*global $*/
 
-(function boomarklet() {
+(function boomarklet(options) {
 
     var coverage = window.__coverage__;
 
     function clear(callback) {
+        if (!options.clearBeforeSend) {
+            return callback();
+        }
+
         $.ajax({
             type: 'GET',
             url: '/coverage/reset',
@@ -14,6 +18,10 @@
     }
 
     function collect(callback) {
+        if (!options.sendCoverage) {
+            return callback();
+        }
+
         $.ajax({
             type: 'POST',
             url: '/coverage/client',
@@ -25,11 +33,15 @@
     }
 
     function redirect() {
-        location.href = '/coverage';
+        if (options.redirectToCoverage) {
+            location.href = '/coverage';
+        }
     }
 
     if (coverage) {
-        document.body.style.opacity = 0.5;
+        if (options.redirectToCoverage) {
+            document.body.style.opacity = 0.5;
+        }
 
         clear(function () {
             collect(redirect);
@@ -38,4 +50,8 @@
         window.alert('No coverage gathered! Check if requested files were instrumented...');
     }
 
-}());
+}({
+    clearBeforeSend: false,
+    sendCoverage: false,
+    redirectToCoverage: true
+}));
