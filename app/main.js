@@ -10,7 +10,10 @@
             type: 'POST',
             url: '/coverage/client',
             data: coverage,
-            dataType: 'application/json'
+            dataType: 'application/json',
+            success: function () {
+                location.href = '/coverage';
+            }
         });
     } else {
         window.alert('No coverage gathered! Check if requested files were instrumented');
