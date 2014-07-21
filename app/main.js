@@ -52,6 +52,6 @@
 
 }({
     clearBeforeSend: false,
-    sendCoverage: false,
-    redirectToCoverage: true
+    sendCoverage: true,
+    redirectToCoverage: false
 }));
