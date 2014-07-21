@@ -8,7 +8,7 @@ Here we suppose that ```__coverage__``` is gathered from Istanbul-instrumented J
 Add this script to your browser bookmarks:
 
 ```javascript
-javascript:(function(){var e=window.__coverage__;e?$.ajax({type:"POST",url:"/coverage/client",data:e,dataType:"application/json",success:function(){location.href="/coverage"}}):window.alert("No coverage gathered! Check if requested files were instrumented")})();
+javascript:(function(){function e(e){$.ajax({type:"GET",url:"/coverage/reset",success:e})}function t(e){$.ajax({type:"POST",url:"/coverage/client",data:c,dataType:"application/json",success:e})}function a(){location.href="/coverage"}var c=window.__coverage__;c?(document.body.style.opacity=.5,e(function(){t(a)})):window.alert("No coverage gathered! Check if requested files were instrumented...")})();
 ```
 
 # Requirements
